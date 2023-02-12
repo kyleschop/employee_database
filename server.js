@@ -1,4 +1,20 @@
+// Import modules
 const inquirer = require('inquirer');
+const mysql = require('mysql2');
+
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      user: 'root',
+      password: 'placeholder',
+      database: 'employee_db'
+    },
+  );
+ 
+  // Connect to the database
+db.connect((error) => {
+    if (error) throw error;
+});
 
 inquirer
     .prompt([
