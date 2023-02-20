@@ -31,7 +31,7 @@ function showOptions(){
             break;
             case 'View all departments': showDepartmentList();
             break;
-            case 'View all roles': showRolesList();
+            case 'View all roles': showRoleList();
             break;
             case 'Add employee': addEmployee();
             break;
@@ -63,9 +63,9 @@ function showEmployeeList(){
     })
 }
 
-function showRolesList(){
-    const sqlRoles = "select * from roles;"
-    connection.query(sqlRoles, (error, roleData) =>{
+function showRoleList(){
+    const sqlRole = "select * from role;"
+    connection.query(sqlRole, (error, roleData) =>{
         if (error) throw error;
         console.table(roleData);
         showOptions();
@@ -138,7 +138,7 @@ function addRole(){
             const { id, title, salary, departmentId } = answer;
             // Insert the new role into the database
             connection.query(
-                "INSERT INTO roles SET ?",
+                "INSERT INTO role SET ?",
                 {
                     id,
                     title,
@@ -157,7 +157,7 @@ function addRole(){
 }
 
 function addEmployee(){
-    const sql = "SELECT * FROM roles";
+    const sql = "SELECT * FROM role";
     connection.query(sql, (error, response) => {
         if (error) throw error;
         const role = response.map((role) => ({

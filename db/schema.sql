@@ -4,7 +4,7 @@ CREATE DATABASE employee_db;
 USE employee_db;
 
 CREATE TABLE department(
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL
 );
 
@@ -19,14 +19,14 @@ CREATE TABLE role(
 );
 
 CREATE TABLE employee(
-    id INT NOT NULL PRIMARY KEY,
+    id INT PRIMARY KEY,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role_id INT,
     manager_id INT,
     FOREIGN KEY (role_id)
     REFERENCES role(id)
-    ON DELETE SET NULL
+    ON DELETE SET NULL,
     FOREIGN KEY (manager_id)
     REFERENCES employee(id)
     ON DELETE SET NULL
@@ -39,7 +39,7 @@ VALUES ("Finance"),
        ("Sales"),
        ("Engineering");
 
-INSERT INTO roles (id, title, salary, department_id)
+INSERT INTO role (id, title, salary, department_id)
 VALUES (1, "Manager", 100000.00, 1),
        (2, "Cashier", 36000.00, 4),
        (3, "Lawyer", 90000.75, 2),
